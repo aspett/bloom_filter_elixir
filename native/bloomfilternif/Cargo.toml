@@ -1,0 +1,12 @@
+[package]
+name = "bloomfilternif"
+version = "0.1.0"
+authors = []
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+rustler = { version = "0.37.0", default-features = false, features = ["derive", "nif_version_2_15"] }
+fastbloom = "0.14.0"
