@@ -2,16 +2,18 @@ defmodule BloomFilter.MixProject do
   use Mix.Project
 
   @version "0.1.1"
+  @source_url "https://github.com/aspett/bloom_filter_elixir"
 
   def project do
     [
       app: :bloom_filter,
+      description: "Simple Bloom Filter wrapping the fastbloom Rust crate",
       version: @version,
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       docs: docs(),
-      source_url: "https://github.com/aspett/bloom_filter_elixir",
+      source_url: @source_url,
       package: package()
     ]
   end
@@ -43,13 +45,18 @@ defmodule BloomFilter.MixProject do
 
   defp package do
     [
+      name: "bloom_filter_ex",
+      licenses: ["MIT", "Apache-2.0"],
+      links: %{
+        "GitHub": @source_url
+      },
       files: [
         "lib",
         "native",
         "checksum-*.exs",
         "mix.exs",
         "README.md",
-        "LICENSE"
+        "LICENSE*"
       ],
     ]
   end

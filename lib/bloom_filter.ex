@@ -43,14 +43,6 @@ defmodule BloomFilter do
 
   If an item was NOT added, `member?/2` might return `true` (false positive) with
   probability approximately equal to the configured false positive rate.
-
-  ## Memory Usage
-
-  For a 1% false positive rate, the filter uses approximately 9.6 bits per item.
-  Examples:
-  - 1,000 items @ 1% FPR: ~1.2 KB
-  - 1,000,000 items @ 1% FPR: ~1.2 MB
-  - 10,000,000 items @ 1% FPR: ~12 MB
   """
 
   alias BloomFilter.Native
