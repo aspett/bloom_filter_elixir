@@ -52,7 +52,11 @@ defmodule BloomFilterEx.MixProject do
       },
       files: [
         "lib",
-        "native",
+        "native/bloomfilternif/.cargo",
+        "native/bloomfilternif/src",
+        "native/bloomfilternif/Cargo.toml",
+        "native/bloomfilternif/Cargo.lock",
+        "native/bloomfilternif/Cross.toml",
         "checksum-*.exs",
         "mix.exs",
         "README.md",
