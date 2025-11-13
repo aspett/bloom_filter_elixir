@@ -82,4 +82,4 @@ fn stats(resource: ResourceArc<BloomFilterResource>) -> Result<(usize, usize, f3
     Ok((filter.num_bits(), filter.num_hashes() as usize, resource.false_positive_rate, *count))
 }
 
-rustler::init!("Elixir.BloomFilter.Native", load = on_load);
+rustler::init!("Elixir.BloomFilterEx.Native", load = on_load);

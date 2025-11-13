@@ -1,4 +1,4 @@
-defmodule BloomFilter do
+defmodule BloomFilterEx do
   @moduledoc """
   A space-efficient probabilistic data structure for membership testing.
 
@@ -11,25 +11,25 @@ defmodule BloomFilter do
   ## Examples
 
       # Create a Bloom filter for 1M items with 1% false positive rate
-      iex> bloom = BloomFilter.new(1_000_000, 0.01)
+      iex> bloom = BloomFilterEx.new(1_000_000, 0.01)
       iex> bloom.size > 9_500_000
       true
       iex> bloom.hash_count
       6
 
       # Add items
-      iex> bloom = BloomFilter.new(1000, 0.01)
-      iex> bloom = BloomFilter.add(bloom, "user@example.com")
-      iex> bloom = BloomFilter.add(bloom, "192.168.1.1")
-      iex> BloomFilter.member?(bloom, "user@example.com")
+      iex> bloom = BloomFilterEx.new(1000, 0.01)
+      iex> bloom = BloomFilterEx.add(bloom, "user@example.com")
+      iex> bloom = BloomFilterEx.add(bloom, "192.168.1.1")
+      iex> BloomFilterEx.member?(bloom, "user@example.com")
       true
-      iex> BloomFilter.member?(bloom, "not-added@example.com")
+      iex> BloomFilterEx.member?(bloom, "not-added@example.com")
       false
 
       # Check statistics
-      iex> bloom = BloomFilter.new(100, 0.01)
-      iex> bloom = BloomFilter.add(bloom, "item1")
-      iex> stats = BloomFilter.stats(bloom)
+      iex> bloom = BloomFilterEx.new(100, 0.01)
+      iex> bloom = BloomFilterEx.add(bloom, "item1")
+      iex> stats = BloomFilterEx.stats(bloom)
       iex> stats.inserted_count
       1
       iex> stats.capacity
@@ -45,7 +45,7 @@ defmodule BloomFilter do
   probability approximately equal to the configured false positive rate.
   """
 
-  alias BloomFilter.Native
+  alias BloomFilterEx.Native
 
   defstruct [:resource, :size, :hash_count, :capacity, :false_positive_rate, :inserted_count]
 
@@ -72,7 +72,7 @@ defmodule BloomFilter do
 
   ## Examples
 
-      iex> bloom = BloomFilter.new(1000, 0.01)
+      iex> bloom = BloomFilterEx.new(1000, 0.01)
       iex> bloom.size > 0
       true
       iex> bloom.hash_count > 0
@@ -80,7 +80,7 @@ defmodule BloomFilter do
       iex> bloom.inserted_count
       0
 
-      iex> bloom = BloomFilter.new(10_000, 0.001)
+      iex> bloom = BloomFilterEx.new(10_000, 0.001)
       iex> bloom.hash_count
       9
 
@@ -120,15 +120,15 @@ defmodule BloomFilter do
 
   ## Examples
 
-      iex> bloom = BloomFilter.new(100, 0.01)
-      iex> bloom = BloomFilter.add(bloom, "test-item")
+      iex> bloom = BloomFilterEx.new(100, 0.01)
+      iex> bloom = BloomFilterEx.add(bloom, "test-item")
       iex> bloom.inserted_count
       1
-      iex> BloomFilter.member?(bloom, "test-item")
+      iex> BloomFilterEx.member?(bloom, "test-item")
       true
 
-      iex> bloom = BloomFilter.new(100, 0.01)
-      iex> bloom = bloom |> BloomFilter.add(1) |> BloomFilter.add(2)
+      iex> bloom = BloomFilterEx.new(100, 0.01)
+      iex> bloom = bloom |> BloomFilterEx.add(1) |> BloomFilterEx.add(2)
       iex> bloom.inserted_count
       2
 
@@ -151,11 +151,11 @@ defmodule BloomFilter do
 
   ## Examples
 
-      iex> bloom = BloomFilter.new(100, 0.01)
-      iex> bloom = BloomFilter.add(bloom, "exists")
-      iex> BloomFilter.member?(bloom, "exists")
+      iex> bloom = BloomFilterEx.new(100, 0.01)
+      iex> bloom = BloomFilterEx.add(bloom, "exists")
+      iex> BloomFilterEx.member?(bloom, "exists")
       true
-      iex> BloomFilter.member?(bloom, "does-not-exist")
+      iex> BloomFilterEx.member?(bloom, "does-not-exist")
       false
 
   """
@@ -172,14 +172,14 @@ defmodule BloomFilter do
 
   ## Examples
 
-      iex> bloom = BloomFilter.new(100, 0.01)
-      iex> bloom = BloomFilter.add(bloom, "test")
+      iex> bloom = BloomFilterEx.new(100, 0.01)
+      iex> bloom = BloomFilterEx.add(bloom, "test")
       iex> bloom.inserted_count
       1
-      iex> bloom = BloomFilter.clear(bloom)
+      iex> bloom = BloomFilterEx.clear(bloom)
       iex> bloom.inserted_count
       0
-      iex> BloomFilter.member?(bloom, "test")
+      iex> BloomFilterEx.member?(bloom, "test")
       false
 
   """
@@ -205,8 +205,8 @@ defmodule BloomFilter do
 
   ## Examples
 
-      iex> bloom = BloomFilter.new(100, 0.01)
-      iex> stats = BloomFilter.stats(bloom)
+      iex> bloom = BloomFilterEx.new(100, 0.01)
+      iex> stats = BloomFilterEx.stats(bloom)
       iex> stats.capacity
       100
       iex> stats.saturation

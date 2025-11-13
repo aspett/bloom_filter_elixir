@@ -1,10 +1,10 @@
-defmodule BloomFilter.Native do
+defmodule BloomFilterEx.Native do
   @moduledoc false
   version = Mix.Project.config()[:version]
   source_url = Mix.Project.config()[:source_url]
 
   use RustlerPrecompiled,
-    otp_app: :bloom_filter,
+    otp_app: :bloom_filter_ex,
     crate: :bloomfilternif,
     base_url: "#{source_url}/releases/download/v#{version}",
     force_build: System.get_env("BLOOM_FILTER_BUILD") in ["1", "true"],

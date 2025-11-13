@@ -1,4 +1,4 @@
-defmodule BloomFilter.MixProject do
+defmodule BloomFilterEx.MixProject do
   use Mix.Project
 
   @version "0.1.1"
@@ -6,7 +6,7 @@ defmodule BloomFilter.MixProject do
 
   def project do
     [
-      app: :bloom_filter,
+      app: :bloom_filter_ex,
       description: "Simple Bloom Filter wrapping the fastbloom Rust crate",
       version: @version,
       elixir: "~> 1.18",
@@ -20,7 +20,7 @@ defmodule BloomFilter.MixProject do
 
   defp docs do
     [
-      main: "BloomFilter",
+      main: "BloomFilterEx",
       extras: ["README.md"]
     ]
   end

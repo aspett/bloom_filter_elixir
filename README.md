@@ -1,4 +1,4 @@
-# BloomFilter
+# BloomFilterEx
 
 A high-performance Elixir implementation of Bloom filters using the blazingly fast [fastbloom](https://github.com/tomtomwombat/fastbloom) Rust library via Rustler NIFs.
 
@@ -21,18 +21,18 @@ A Bloom filter is a space-efficient probabilistic data structure for membership 
 
 ```elixir
 # Create a Bloom filter for 1M items with 1% false positive rate
-bloom = BloomFilter.new(1_000_000, 0.01)
+bloom = BloomFilterEx.new(1_000_000, 0.01)
 
 # Add items
-bloom = BloomFilter.add(bloom, "user@example.com")
-bloom = BloomFilter.add(bloom, "192.168.1.1")
+bloom = BloomFilterEx.add(bloom, "user@example.com")
+bloom = BloomFilterEx.add(bloom, "192.168.1.1")
 
 # Check membership
-BloomFilter.member?(bloom, "user@example.com")  # => true
-BloomFilter.member?(bloom, "not-added@example.com")  # => false
+BloomFilterEx.member?(bloom, "user@example.com")  # => true
+BloomFilterEx.member?(bloom, "not-added@example.com")  # => false
 
 # Get statistics
-stats = BloomFilter.stats(bloom)
+stats = BloomFilterEx.stats(bloom)
 # => %{capacity: 1000000, false_positive_rate: 0.01, ...}
 ```
 
@@ -44,7 +44,7 @@ by adding `bloom_filter` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:bloom_filter, "~> 0.1.0"}
+    {:bloom_filter_ex, "~> 0.1.0"}
   ]
 end
 ```
