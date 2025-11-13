@@ -1,13 +1,23 @@
 defmodule BloomFilter.Native do
   @moduledoc false
   version = Mix.Project.config()[:version]
+  source_url = Mix.Project.config()[:source_url]
 
   use RustlerPrecompiled,
     otp_app: :bloom_filter,
-    crate: :bloomfilternif, base_url:
-      "https://github.com/aspett/bloom_filter_elixir/releases/download/v#{version}",
-    force_build: System.get_env("RUSTLER_PRECOMPILATION_BLOOM_FILTER_BUILD") in ["1", "true"],
-    version: version
+    crate: :bloomfilternif,
+    base_url: "#{source_url}/releases/download/v#{version}",
+    force_build: System.get_env("BLOOM_FILTER_BUILD") in ["1", "true"],
+    version: version,
+    targets: [
+      "aarch64-apple-darwin",
+      "aarch64-unknown-linux-gnu",
+      "aarch64-unknown-linux-musl",
+      "x86_64-apple-darwin",
+      "x86_64-unknown-linux-gnu",
+      "x86_64-unknown-linux-musl"
+    ],
+    nif_versions: ["2.17", "2.16"]
 
   def new(_capacity, _false_positive_rate), do: :erlang.nif_error(:nif_not_loaded)
   def add(_resource, _item), do: :erlang.nif_error(:nif_not_loaded)

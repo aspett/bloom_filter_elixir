@@ -7,11 +7,6 @@ defmodule BloomFilter do
   (there is a small chance of false positives).
 
   This implementation uses the blazingly fast [fastbloom](https://github.com/tomtomwombat/fastbloom)
-  Rust library, which provides:
-  - Optimal sizing formulas: `m = -n × ln(p) / (ln(2))²` and `k = (m/n) × ln(2)`
-  - Double hashing (Kirsch-Mitzenmacher 2006): generates k hash functions from 2
-  - Hash composition: derives multiple hash functions from a single source hash
-  - Highly optimized bit array operations for maximum performance
 
   ## Examples
 
@@ -56,11 +51,6 @@ defmodule BloomFilter do
   - 1,000 items @ 1% FPR: ~1.2 KB
   - 1,000,000 items @ 1% FPR: ~1.2 MB
   - 10,000,000 items @ 1% FPR: ~12 MB
-
-  ## References
-
-  - Bloom, B. H. (1970). "Space/time trade-offs in hash coding with allowable errors"
-  - Kirsch, A. and Mitzenmacher, M. (2006). "Less Hashing, Same Performance: Building a Better Bloom Filter"
   """
 
   alias BloomFilter.Native

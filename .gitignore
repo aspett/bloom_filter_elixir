@@ -21,6 +21,10 @@ bloom_filter-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+/priv/native
+
+checksum-*.exs
 
 # Rust binary artifacts
 /target/
+/native/bloomfilternif/target/
